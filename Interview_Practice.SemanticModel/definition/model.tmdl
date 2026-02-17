@@ -10,6 +10,8 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_QueryOrder = ["RangeEnd","RangeStart","orders"]
 
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
 ref table orders
 ref table DateTableTemplate_554976ea-3c29-4167-aaeb-3e579a1e2fa0
 ref table LocalDateTable_aff0fb90-d3e4-4a8a-a0e0-73c92b2aa8a6
