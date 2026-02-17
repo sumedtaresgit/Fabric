@@ -1,0 +1,40 @@
+table Employee
+	lineageTag: 0886d248-7940-4b53-8e44-25f5924ea70b
+	sourceLineageTag: [kfc].[Employee]
+
+	column emp_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 30bd81f4-3fc5-44ba-b2e1-4c5cd2d71d86
+		sourceLineageTag: emp_id
+		summarizeBy: sum
+		sourceColumn: emp_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column emp_name
+		dataType: string
+		lineageTag: 90b47e87-7c1e-4415-be72-45b185e5eee3
+		sourceLineageTag: emp_name
+		summarizeBy: none
+		sourceColumn: emp_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column dept_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b8c7a482-ffce-4e19-be6c-848ee30bd2f4
+		sourceLineageTag: dept_id
+		summarizeBy: none
+		sourceColumn: dept_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employee = entity
+		mode: directLake
+		source
+			entityName: Employee
+			schemaName: kfc
+			expressionSource: 'DirectLake - Interview_Practice'
+

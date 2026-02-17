@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "Interview_Practice"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e635f48b-3576-9bc0-4fc3-fbc8d9e425d7"
+  }
+}

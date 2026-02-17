@@ -1,0 +1,15 @@
+relationship 8a19cefa-0426-49f0-bd0c-55d73973b34e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orders.order_date
+	toColumn: LocalDateTable_aff0fb90-d3e4-4a8a-a0e0-73c92b2aa8a6.Date
+
+relationship e04bddf8-e5ac-416e-9bdd-7881de97f9eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orders.created_at
+	toColumn: LocalDateTable_307e4a33-6421-412c-9984-24da77f93084.Date
+
+relationship 190724c7-ab5c-465d-b148-c897a98bb30e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Date Table'.Date
+	toColumn: LocalDateTable_c2a56a23-f309-4e5a-892c-7aaf467973f0.Date
+

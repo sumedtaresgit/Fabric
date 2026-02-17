@@ -1,0 +1,9 @@
+expression 'DirectLake - Interview_Practice' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/5725e6c6-a1f2-4128-a71d-d82e28b0b0dc/d9e425d7-fbc8-4fc3-9bc0-3576e635f48b", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 76261fb7-6c62-4c30-8e40-2d68cddb8362
+
+	annotation PBI_IncludeFutureArtifacts = False
+

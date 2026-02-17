@@ -1,0 +1,222 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1604,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "Department",
+        "sourceLineageTag": "[kfc].[Department]",
+        "columns": [
+          {
+            "name": "dept_id",
+            "dataType": "int64",
+            "sourceColumn": "dept_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "dept_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "dept_name",
+            "dataType": "string",
+            "sourceColumn": "dept_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "dept_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Department",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "kfc"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "Employee",
+        "sourceLineageTag": "[kfc].[Employee]",
+        "columns": [
+          {
+            "name": "emp_id",
+            "dataType": "int64",
+            "sourceColumn": "emp_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "emp_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "emp_name",
+            "dataType": "string",
+            "sourceColumn": "emp_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "emp_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "dept_id",
+            "dataType": "int64",
+            "sourceColumn": "dept_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "dept_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Employee",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "kfc"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "product",
+        "sourceLineageTag": "[kfc].[product]",
+        "columns": [
+          {
+            "name": "prod_id",
+            "dataType": "int64",
+            "sourceColumn": "prod_id",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "prod_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "prod_name",
+            "dataType": "string",
+            "sourceColumn": "prod_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "prod_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "prod_description",
+            "dataType": "string",
+            "sourceColumn": "prod_description",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "prod_description",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "product",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "kfc"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}

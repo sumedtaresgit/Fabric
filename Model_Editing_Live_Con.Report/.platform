@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Model_Editing_Live_Con"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d06ab952-c062-84e3-4b98-7916ce0bd74d"
+  }
+}

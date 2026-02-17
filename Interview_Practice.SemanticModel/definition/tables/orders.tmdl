@@ -1,0 +1,103 @@
+table orders
+	lineageTag: 6c4bdd52-cc25-4433-9ffb-16141a4c05a7
+
+	refreshPolicy
+		policyType: basic
+		rollingWindowGranularity: year
+		rollingWindowPeriods: 3
+		incrementalGranularity: month
+		incrementalPeriods: 6
+		incrementalPeriodsOffset: -1
+		pollingExpression = let Maxcreated_at = List.Max(orders[created_at]), accountForNull = if Maxcreated_at = null then #datetime(1901, 01, 01, 00, 00, 00) else Maxcreated_at in accountForNull
+		sourceExpression =
+			let
+			    Source = Sql.Database("HP-CND22018411", "School"),
+			    dbo_orders = Source{[Schema="dbo",Item="orders"]}[Data],
+			    #"Filtered Rows" = Table.SelectRows(dbo_orders, each [created_at] >= RangeStart and [created_at] <= RangeEnd)
+			in
+			    #"Filtered Rows"
+
+	measure rls = USERPRINCIPALNAME()
+		lineageTag: fe3c062d-225c-4760-8600-200ecea6090d
+
+	measure 'rls 2' = USERNAME()
+		lineageTag: 31c69dbf-1043-4c90-ae09-47b5950fb555
+
+	measure 'Total IDs' = CALCULATE(COUNT(orders[order_id]))
+		formatString: 0
+		lineageTag: be3e7871-b5df-434c-8b10-e5cb6fe8191c
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a53690db-a9c8-452f-b565-8206e1819521
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: ff8e8874-646d-4b01-987d-d30e7815f175
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 83060a1e-3d04-4cda-96bb-85e7445899f0
+		summarizeBy: none
+		sourceColumn: order_date
+
+		variation Variation
+			isDefault
+			relationship: 8a19cefa-0426-49f0-bd0c-55d73973b34e
+			defaultHierarchy: LocalDateTable_aff0fb90-d3e4-4a8a-a0e0-73c92b2aa8a6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 76eb460e-5197-4a7e-be61-5ffaf0beee91
+		summarizeBy: none
+		sourceColumn: order_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f697bca2-3d93-4ecc-bb20-7389e843b662
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: e04bddf8-e5ac-416e-9bdd-7881de97f9eb
+			defaultHierarchy: LocalDateTable_307e4a33-6421-412c-9984-24da77f93084.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition orders = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("HP-CND22018411", "School"),
+				    dbo_orders = Source{[Schema="dbo",Item="orders"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(dbo_orders, each [created_at] >= RangeStart and [created_at] <= RangeEnd)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_IsMQueryFoldable = True
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,30 @@
+table Department
+	lineageTag: 34564a5d-eb47-4ccb-89ca-0f1710cf3edf
+	sourceLineageTag: [kfc].[Department]
+
+	column dept_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c27d4aa8-5607-4a1e-ae72-de4e8f478dc0
+		sourceLineageTag: dept_id
+		summarizeBy: none
+		sourceColumn: dept_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dept_name
+		dataType: string
+		lineageTag: 9284f511-5f5e-4d93-9c70-064946c11159
+		sourceLineageTag: dept_name
+		summarizeBy: none
+		sourceColumn: dept_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Department = entity
+		mode: directLake
+		source
+			entityName: Department
+			schemaName: kfc
+			expressionSource: 'DirectLake - Interview_Practice'
+

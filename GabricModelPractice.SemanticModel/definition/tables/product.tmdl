@@ -1,0 +1,39 @@
+table product
+	lineageTag: 64bcc15b-c1a8-4a2c-ae5f-a1ebcc26fd54
+	sourceLineageTag: [kfc].[product]
+
+	column prod_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 64cb8db0-8bf9-4589-94a1-bd33f8df6683
+		sourceLineageTag: prod_id
+		summarizeBy: sum
+		sourceColumn: prod_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prod_name
+		dataType: string
+		lineageTag: 33f12cd3-3530-40d3-94e7-4dc7c21e5ace
+		sourceLineageTag: prod_name
+		summarizeBy: none
+		sourceColumn: prod_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prod_description
+		dataType: string
+		lineageTag: 75b45b61-c619-42b5-a659-82c8f75966f3
+		sourceLineageTag: prod_description
+		summarizeBy: none
+		sourceColumn: prod_description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition product = entity
+		mode: directLake
+		source
+			entityName: product
+			schemaName: kfc
+			expressionSource: 'DirectLake - Interview_Practice'
+
